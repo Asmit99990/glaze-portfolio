@@ -30,7 +30,7 @@ export default function Footer() {
             >
               <motion.a
                 whileHover={{ scale: 1.05 }}
-                href="mailto:hello@glaze.example"
+                href="mailto:glaze0999@gmail.com"
                 className="px-6 py-3 rounded-full bg-linear-to-r from-emerald-400 to-cyan-400 text-white font-semibold hover:shadow-lg hover:shadow-emerald-400/50"
               >
                 Get In Touch
@@ -44,7 +44,7 @@ export default function Footer() {
               className="space-y-2 text-sm text-gray-400"
             >
               <p>© {new Date().getFullYear()} Glaze Agency — Creative Frontend & UI/UX</p>
-              <p>Email: glaze0999@gmail.com • </p>
+              <p>Email: glaze999@gmail.com •  </p>
             </motion.div>
           </div>
         </div>
