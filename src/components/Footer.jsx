@@ -44,7 +44,7 @@ export default function Footer() {
               className="space-y-2 text-sm text-gray-400"
             >
               <p>© {new Date().getFullYear()} Glaze Agency — Creative Frontend & UI/UX</p>
-              <p>Email: hello@glaze.example • Phone: +1 (555) 123-4567</p>
+              <p>Email: glaze0999@gmail.com • </p>
             </motion.div>
           </div>
         </div>
