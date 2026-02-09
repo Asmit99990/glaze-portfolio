@@ -16,7 +16,7 @@ export default function Navbar({ onMenuToggle, isOpen }) {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="sticky top-0 z-40 backdrop-blur-xl bg-white/8 border-b border-white/10 shadow-lg"
+      className="fixed top-0 left-0 right-0 z-40 backdrop-blur-xl bg-white/8 border-b border-white/10 shadow-lg"
     >
       <div className="max-w-6xl mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
         <motion.h1
@@ -37,16 +37,29 @@ export default function Navbar({ onMenuToggle, isOpen }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + idx * 0.1 }}
               onMouseEnter={() => setActive(link.label)}
-              className="relative group text-sm font-medium"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className={`relative group text-sm font-medium cursor-pointer px-3 py-2 rounded-lg transition-all ${
+                active === link.label
+                  ? 'border-2 border-emerald-400 text-emerald-400'
+                  : 'border-2 border-transparent'
+              }`}
             >
               {link.label}
               <motion.div
-                layoutId="underline"
                 className="absolute -bottom-1 left-0 right-0 h-0.5 bg-linear-to-r from-emerald-400 to-cyan-400"
                 initial={{ scaleX: 0 }}
+                animate={{ scaleX: active === link.label ? 1 : 0 }}
                 whileHover={{ scaleX: 1 }}
                 transition={{ duration: 0.3 }}
                 style={{ originX: 0 }}
+              />
+              <motion.div
+                className="absolute -inset-2 rounded-lg bg-gradient-to-r from-emerald-400 to-cyan-400 -z-10"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileHover={{ opacity: 0.1, scale: 1 }}
+                animate={{ opacity: active === link.label ? 0.15 : 0 }}
+                transition={{ duration: 0.3 }}
               />
             </motion.a>
           ))}
@@ -57,8 +70,17 @@ export default function Navbar({ onMenuToggle, isOpen }) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4 }}
           href="#contact"
-          className="hidden md:inline-block px-6 py-2 rounded-full bg-linear-to-r from-emerald-400 to-cyan-400 text-white font-medium text-sm hover:shadow-lg hover:shadow-emerald-400/50 transition"
+          whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(16, 185, 129, 0.6)' }}
+          whileTap={{ scale: 0.95 }}
+          className="hidden md:inline-block px-6 py-2 rounded-full bg-linear-to-r from-emerald-400 to-cyan-400 text-white font-medium text-sm hover:shadow-lg transition relative overflow-hidden"
         >
+          <motion.div
+            className="absolute inset-0 bg-linear-to-r from-cyan-400 to-emerald-400 rounded-full -z-10"
+            initial={{ scaleX: 0 }}
+            whileHover={{ scaleX: 1 }}
+            transition={{ duration: 0.4 }}
+            style={{ originX: 0 }}
+          />
           Contact
         </motion.a>
 
@@ -93,17 +115,21 @@ export default function Navbar({ onMenuToggle, isOpen }) {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.05 }}
-                className="text-sm font-medium hover:text-emerald-400"
+                whileHover={{ x: 5, color: '#10b981' }}
+                whileTap={{ scale: 0.95 }}
+                className="text-sm font-medium hover:text-emerald-400 transition cursor-pointer"
               >
                 {link.label}
               </motion.a>
             ))}
             <motion.a
               href="#contact"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="mt-2 px-4 py-2 rounded-full bg-linear-to-r from-emerald-400 to-cyan-400 text-white text-sm text-center"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: navLinks.length * 0.05 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="text-sm font-medium px-4 py-2 rounded-full bg-linear-to-r from-emerald-400 to-cyan-400 text-white"
             >
               Contact
             </motion.a>
